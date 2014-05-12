@@ -1,0 +1,17 @@
+<h1>All Bookmarks</h1>
+<% @bookmarks.each do |bookmark| %>
+ <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to bookmark.url, [@category,bookmark] %>
+      </h4>
+       <small>
+        submitted <%= time_ago_in_words(bookmark.created_at) %> ago by <%= bookmark.user.email %>
+      </small>
+    </div>
+  </div>
+<% end %>
+
+<% if policy(Bookmark.new).create? %>
+  <%= link_to "New Bookmakr", new_category_bookmark_path, class: 'btn btn-success' %>
+<% end %>

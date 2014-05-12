@@ -1,0 +1,27 @@
+<h1><%= @category.name %></h1>
+
+<% if policy(@category).update? %>
+  <%= link_to "Edit Category", edit_category_path, class: 'btn btn-success' %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-8">
+    <% @bookmarks.each do |bookmark| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to bookmark.url, [@category, bookmark] %>
+          </h4>
+          <small>
+            submitted <%= time_ago_in_words(bookmark.created_at) %> ago by <%= bookmark.user.email %>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <% if policy(Bookmark.new).create? %>
+      <%= link_to "New Bookmark", new_category_bookmark_path(@category), class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
