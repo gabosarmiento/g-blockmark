@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-GBlockmark::Application.config.secret_key_base = '40a3d542e8f83f3239466716844db0b982c7171031ffe89006b257ed0ebe32cb3db6087f5df8643f85cfcebcd62a113ce46aba60beae6e805370eaec0e254e94'
+GBlockmark::Application.config.secret_key_base = ENV['SECRET_KEY_BASE'] 
