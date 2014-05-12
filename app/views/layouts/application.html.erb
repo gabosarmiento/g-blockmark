@@ -7,11 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <ul>
-    <li><%= link_to "Home", root_path %></li>
-  </ul>
+  <div class="container">
+      <ul class="nav nav-tabs">
+        <li><%= link_to "Bloccit", welcome_index_path %></li>
+      </ul>
 
-<%= yield %>
-
+      <%= yield %>
+    </div>
 </body>
 </html>
