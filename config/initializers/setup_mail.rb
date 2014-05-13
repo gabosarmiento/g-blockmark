@@ -6,7 +6,7 @@ if Rails.env.development?
     :authentication => :plain,
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"],
-    :domain         => 'heroku.com',
+    :domain         => 'g-blockmark.herokuapp.com',
     :enable_starttls_auto => true
   }
 end
