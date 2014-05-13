@@ -6,11 +6,11 @@ class IncomingController < ApplicationController
   def create
     
     @user = params[:sender]
-    puts "sender user #{user}"
+    puts "sender user #{@user}"
     @name = params[:subject]
-    puts "category name #{name}"
+    puts "category name #{@name}"
     @url = params[:bodyPlain]
-    puts "bookmark url #{url}"
+    puts "bookmark url #{@url}"
     @bookmark = Bookmark.new(params.require(:bookmark).permit(:url)) 
     @bookmark.user = @user
     @bookmark.category = Category.find_or_create_by!(params.require(:category).permit(:name))
