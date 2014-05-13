@@ -4,22 +4,21 @@ class IncomingController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
 
   def create
-    # Take a look at these in your server logs
-    # to get a sense of what you're dealing with.
     
-    # user = params[:sender]
-    # category = params[:subject]
-    # @category = Category.find_or_create_by!(params.require(:category).permit(:name))
-    # @category.url = category
-    # @bookmark = Bookmark.find_or_create_by!(params.require(:bookmark).permit(:url)) 
-    # @bookmark.user = user
-    # @bookmark.category = @
-    
-    # params[:body-plain]
-    puts "INCOMING PARAMS HERE: #{params}"
-
-    # You put the message-splitting and business
-    # magic here. 
+    @user = params[:sender]
+    puts "sender user #{user}"
+    @name = params[:subject]
+    puts "category name #{name}"
+    @url = params[:bodyPlain]
+    puts "bookmark url #{url}"
+    @bookmark = Bookmark.new(params.require(:bookmark).permit(:url)) 
+    @bookmark.user = @user
+    @bookmark.category = Category.find_or_create_by!(params.require(:category).permit(:name))
+    if @bookmark.save 
+      puts "saved"
+    else
+      puts "error"
+    end
 
     # Assuming all went well. 
     head 200
