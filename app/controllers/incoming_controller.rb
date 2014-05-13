@@ -7,9 +7,11 @@ class IncomingController < ApplicationController
 
     puts "sender user #{params[:sender]}"
     puts "category name #{params[:subject]}"
-    puts "bookmark url #{params[:bodyPlain]}"
-    # @bookmark = Bookmark.new(params.require(:bookmark).permit(:url)) 
-    # @bookmark.user = @user
+    puts "bookmark url #{params[:'body-plain']}"
+    @bookmark = Bookmark.new(params.require(:bookmark).permit(:url)) 
+    @bookmark.category = params[:subject]
+    @bookmark.url = params[:'body-plain']
+    @bookmark.save
     # @bookmark.category = Category.find_or_create_by!(params.require(:category).permit(:name))
     # if @bookmark.save 
     #   puts "saved"
