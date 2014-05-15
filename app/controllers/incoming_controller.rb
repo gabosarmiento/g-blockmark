@@ -8,9 +8,9 @@ class IncomingController < ApplicationController
     sender = params["sender"]
     body_plain = params["stripped-text"]
     subject = params["subject"]
-    @category = Category.find_or_create_by!(params.require(:category).permit(name: subject))
+    @category = Category.find_or_create_by!(name: subject)
     @user = User.where(email: sender)
-    @bookmark = @user.bookmarks.create(params.require(:bookmark).permit(url: body_plain, category_id: @category.id))
+    @bookmark = @user.bookmarks.create(url: body_plain, category_id: @category.id)
     @bookmark.save
     # Assuming all went well. 
     head 200
