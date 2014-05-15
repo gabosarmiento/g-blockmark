@@ -9,7 +9,7 @@ class IncomingController < ApplicationController
     body_plain = params["stripped-text"]
     subject = params["subject"]
     @category = Category.find_or_create_by!(name: subject)
-    @user = User.where(email: sender)
+    @user = User.find_by_email(sender)
     puts @user
     @bookmark = @user.bookmarks.create(url: body_plain, category_id: @category.id)
     @bookmark.save
