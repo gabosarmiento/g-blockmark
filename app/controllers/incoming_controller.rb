@@ -5,20 +5,12 @@ class IncomingController < ApplicationController
 
   def create
 
-    puts "sender user #{params[:sender]}"
-    puts "category name #{params[:subject]}"
-    puts "bookmark url #{params[:'body-plain']}"
-    @bookmark = Bookmark.new(params.require(:bookmark).permit(:url)) 
-    @bookmark.category = params[:subject]
-    @bookmark.url = params[:'body-plain']
+    sender = params["sender"]
+    body_plain = params["stripped-text"]
+    @category = Category.find_or_create_by!(params.require(:category).permit(name: "E-mail"))
+    @user = User.where(email: sender)
+    @bookmark = @user.bookmarks.create(params.require(:bookmark).permit(url: body_plain, category_id: @category.id))
     @bookmark.save
-    # @bookmark.category = Category.find_or_create_by!(params.require(:category).permit(:name))
-    # if @bookmark.save 
-    #   puts "saved"
-    # else
-    #   puts "error"
-    # end
-
     # Assuming all went well. 
     head 200
   end
