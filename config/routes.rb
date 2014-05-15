@@ -7,5 +7,4 @@ GBlockmark::Application.routes.draw do
  end
   get "home" => 'welcome#index'
   root to: 'welcome#index'
-  use_link_thumbnailer
 end
