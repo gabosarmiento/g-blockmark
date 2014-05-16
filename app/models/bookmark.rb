@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: bookmarks
+#
+#  id          :integer          not null, primary key
+#  url         :string(255)
+#  category_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_id     :integer
+#
+
 class Bookmark < ActiveRecord::Base
   belongs_to :category
   belongs_to :user

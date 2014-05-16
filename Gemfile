@@ -45,4 +45,5 @@ gem 'pundit'
 gem 'figaro'
 gem 'link_thumbnailer'
 gem 'will_paginate', '~> 3.0'
+gem 'annotate'
 
