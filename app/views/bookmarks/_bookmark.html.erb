@@ -16,6 +16,8 @@
             <h4 class="media-heading">
             <%= object.title %>
             </h4>
+             <p><%= object.description %>
+            </p>
             <small>
               submitted <%= time_ago_in_words(bookmark.created_at) %> ago by <%= bookmark.user.email %>
             </small>
