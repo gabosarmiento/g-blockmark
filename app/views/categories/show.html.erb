@@ -1,7 +1,7 @@
 <h1><%= @category.name %></h1>
 
 <% if policy(@category).update? %>
-  <%= link_to "Edit Category", edit_category_path, class: 'btn btn-success' %>
+  <%= link_to "Change category name", edit_category_path, class: 'btn btn-success' %>
 <% end %>
 <hr>
 <div class="col-md-12">

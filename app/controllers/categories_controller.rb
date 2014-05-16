@@ -48,8 +48,10 @@ class CategoriesController < ApplicationController
     authorize @category
     if @category.destroy
       flash[:success] = "Succesfully deleted #{name} category"
-    else
+      redirect_to categories_path
+   else
       flash[:error] = "Error deleting category. Please try again"
+      redirect_to categories_path
     end
   end
 end

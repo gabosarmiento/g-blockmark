@@ -4,11 +4,14 @@
     <div class="media-body">
       <h4 class="media-heading">
         <%= link_to category.name, category %>
-      </h4>
+      
+      <% if policy(category).destroy? %>
+         <%= link_to "delete", category, method: :delete, class: "btn btn-xs btn-danger", data: { :confirm => "Are you sure ?" } %>
+      <% end %></h4>
     </div>
   </div>
 <% end %>
 
 <% if policy(Category.new).create? %>
-  <%= link_to "New Category", new_category_path, class: 'btn btn-success' %>
+  <%= link_to "Create a category", new_category_path, class: 'btn btn-success' %>
 <% end %>

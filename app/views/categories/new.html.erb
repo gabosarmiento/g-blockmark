@@ -19,7 +19,7 @@
       </ul>
     </div>
     <% end %>
-    <%= control_group_tag(@category.errors[:name) do %>
+    <%= control_group_tag(@category.errors[:name]) do %>
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control', placeholder: "Enter category name" %>
