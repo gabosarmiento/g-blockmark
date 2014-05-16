@@ -10,6 +10,7 @@
             No image to preview
             <% end %>
             </div>
+            <%= render partial: 'votes/voter', locals: {category: bookmark.category , bookmark: bookmark} %>
           </div>
           <div class="row col-md-6">
             <h4 class="media-heading">

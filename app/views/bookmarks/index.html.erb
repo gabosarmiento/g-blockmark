@@ -1,6 +1,8 @@
-<h1>My Bookmarks</h1>
+
 <div class="col-md-12">
-  <div class="col-md-8">
+<div class="row">
+  <div class="col-md-7">
+    <h1>My Bookmarks</h1>
     <% @bookmarks.each do |bookmark| %>
       <div class="media" id="bookmark-<%= bookmark.id %>">
         <div class="media-body">
@@ -14,16 +16,20 @@
             No image to preview
             <% end %>
             </div>
+            <br>
+            <%= render partial: 'votes/voter', locals: {category: bookmark.category , bookmark: bookmark} %>
           </div>
-          <div class="row col-md-6">
-            <h4 class="media-heading">
+          <div class="col-md-8">
+            <h4>
             <%= object.title %>
-            </h4>
-            <small>
+          </h4>
+            <p><%= object.description %>
+            </p>
+            <small class="pull-right">
               submitted <%= time_ago_in_words(bookmark.created_at) %> ago by <%= bookmark.user.email %>
             </small>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-2">
             <% if policy(bookmark).destroy? %>
             <%= link_to "delete", [bookmark.category, bookmark], method: :delete, remote: true , class: "btn btn-md btn-danger", data: { :confirm => "Are you sure ?" } %>
             <% end %>
@@ -31,7 +37,44 @@
           <% end %>
         </div>
       </div>
+      <hr>
     <% end %>
+  </div>
+  <div class="col-md-5">
+    <h1>My Likes</h1>
+    <% @bookmark_ids.each do |i| %>
+    <div class="media">
+      <% object = LinkThumbnailer.generate( Bookmark.find(i).url, redirect_limit: 5) %>
+      <% if object.valid? %>
+      <div class="media-body">
+          <div class="col-md-3">
+            <div class="row">
+            <% if object.url? %>
+            <%= link_to(image_tag(object.image, size: "100x100"), object.url ) %>
+            <% else %>
+            No image to preview
+            <% end %>
+           </div>
+           <hr>
+            <%= render partial: 'votes/voter', locals: {category: Bookmark.find(i).category , bookmark: Bookmark.find(i)} %>
+          </div>
+          <div class="col-md-9">
+            
+              <h4>
+                <%= object.title %>
+              </h4>
+              <p><%= object.description %>
+            </p>
+              <small>
+                submitted <%= time_ago_in_words(Bookmark.find(i).created_at) %> ago by <%= Bookmark.find(i).user.email %>
+              </small>
+           
+          </div>
+          <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
 </div>
 

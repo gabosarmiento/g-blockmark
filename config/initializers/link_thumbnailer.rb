@@ -11,12 +11,12 @@ LinkThumbnailer.configure do |config|
   # config.redirect_limit = 3
 
   # List of blacklisted urls you want to skip when searching for images.
-  # config.blacklist_urls = [
-  #   %r{^http://ad\.doubleclick\.net/},
-  #   %r{^http://b\.scorecardresearch\.com/},
-  #   %r{^http://pixel\.quantserve\.com/},
-  #   %r{^http://s7\.addthis\.com/}
-  # ]
+  config.blacklist_urls = [
+    %r{^http://ad\.doubleclick\.net/},
+    %r{^http://b\.scorecardresearch\.com/},
+    %r{^http://pixel\.quantserve\.com/},
+    %r{^http://s7\.addthis\.com/}
+  ]
 
   # Included Rmagick attributes for images. See http://www.imagemagick.org/RMagick/doc/
   # for more details.
@@ -25,16 +25,16 @@ LinkThumbnailer.configure do |config|
   # config.image_attributes = %w(source_url size type)
 
   # Fetch 10 images maximum.
-  # config.limit = 10
+  config.limit = 10
 
   # Return top 5 images only.
-  # config.top = 5
+  config.top = 5
 
   # Set user agent
   # config.user_agent = 'linkthumbnailer'
 
   # Enable or disable SSL verification
-  # config.verify_ssl = true
+  config.verify_ssl = false
 
   # HTTP open_timeout: The amount of time in seconds to wait for a connection to be opened.
   # config.http_timeout = 5

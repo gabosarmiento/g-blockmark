@@ -2,6 +2,8 @@ class BookmarksController < ApplicationController
   def index
     if current_user.present?
     @bookmarks = current_user.bookmarks
+    @votes = current_user.votes.where(value: 1)
+    @bookmark_ids = @votes.pluck(:bookmark_id)
     authorize @bookmarks
     else
       redirect_to root_path
