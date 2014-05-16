@@ -9,11 +9,22 @@
   </div>
   <div class="col-md-8">
     <%= form_for @category do |f| %>
+    <% if @category.errors.any? %>
+    <div class="alert alert-block">
+      <h4>There are <%= pluralize(@category.errors.count, "error") %>.</h4>
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <%= control_group_tag(@category.errors[:name) do %>
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control', placeholder: "Enter category name" %>
       </div>
-     
+    <% end %>
       <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>

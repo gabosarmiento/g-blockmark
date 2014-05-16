@@ -12,11 +12,22 @@
   </div>
   <div class="col-md-8">
     <%= form_for [@category, @bookmark] do |f| %>
+    <% if @bookmark.errors.any? %>
+      <div class="alert alert-block">
+        <h4>There are <%= pluralize(@bookmark.errors.count, "error") %>.</h4>
+        <ul>
+          <% @bookmark.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= control_group_tag(@bookmark.errors[:url]) do %>
       <div class="form-group">
         <%= f.label :url%>
-        <%= f.text_field :url, class: 'form-control', placeholder: "Enter bookmark url" %>
+        <%= f.text_field :url, class: 'form-control', placeholder: "Enter bookmark url with http:// or https://" %>
       </div>
-      
+    <% end %>
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
       </div>

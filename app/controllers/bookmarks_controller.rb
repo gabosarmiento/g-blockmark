@@ -23,7 +23,7 @@ class BookmarksController < ApplicationController
    @bookmark.category = @category
    authorize @bookmark
    if @bookmark.save 
-    redirect_to [@category, @bookmark], notice: "Bookmark was saved successfully."
+    redirect_to @category, notice: "Bookmark was saved successfully."
   else
     flash[:error]  = "There was an error saving the bookmark.Please try again."
     render :new
@@ -50,5 +50,13 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
+    @category = Category.find(params[:category_id])
+    @bookmark = Bookmark.find(params[:id])
+    authorize @bookmark
+    if @bookmark.destroy
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 end

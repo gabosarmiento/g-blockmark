@@ -3,24 +3,35 @@
 <% if policy(@category).update? %>
   <%= link_to "Edit Category", edit_category_path, class: 'btn btn-success' %>
 <% end %>
-
-<div class="row">
+<hr>
+<div class="col-md-12">
   <div class="col-md-8">
     <% @bookmarks.each do |bookmark| %>
-      <div class="media">
+      <div class="media" id="bookmark-<%= bookmark.id %>">
         <div class="media-body">
-          <h4 class="media-heading">
-            <% object = LinkThumbnailer.generate(bookmark.url, top: 10, limit: 20, redirect_limit: 5) %>
-            <%= object.title %>
+          <% object = LinkThumbnailer.generate( bookmark.url, redirect_limit: 5) %>
+          <div class="col-md-2">
+            <div class="row">
             <% if object.url? %>
             <%= link_to(image_tag(object.image, size: "100x100"), object.url ) %>
             <% else %>
             No image to preview
             <% end %>
-          </h4>
-          <small>
-            submitted <%= time_ago_in_words(bookmark.created_at) %> ago by <%= bookmark.user.email %>
-          </small>
+            </div>
+          </div>
+          <div class="row col-md-6">
+            <h4 class="media-heading">
+            <%= object.title %>
+            </h4>
+            <small>
+              submitted <%= time_ago_in_words(bookmark.created_at) %> ago by <%= bookmark.user.email %>
+            </small>
+          </div>
+          <div class="col-md-4">
+            <% if policy(bookmark).destroy? %>
+            <%= link_to "delete", [@category, bookmark], method: :delete, remote: true , class: "btn btn-md btn-danger", data: { :confirm => "Are you sure ?" } %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
