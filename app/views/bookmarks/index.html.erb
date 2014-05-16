@@ -17,7 +17,7 @@
             <% end %>
             </div>
             <br>
-            <%= render partial: 'votes/voter', locals: {category: Category.friendly.find(bookmark.category_id) , bookmark: bookmark} %>
+            <%= render partial: 'votes/voter', locals: {category: bookmark.category , bookmark: bookmark} %>
           </div>
           <div class="col-md-8">
             <h4>
@@ -31,7 +31,7 @@
           </div>
           <div class="col-md-2">
             <% if policy(bookmark).destroy? %>
-            <%= link_to "delete", [Category.friendly.find(bookmark.category_id), bookmark], method: :delete, remote: true , class: "btn btn-md btn-danger", data: { :confirm => "Are you sure ?" } %>
+            <%= link_to "delete", [bookmark.category, bookmark], method: :delete, remote: true , class: "btn btn-md btn-danger", data: { :confirm => "Are you sure ?" } %>
             <% end %>
           </div>
           <% end %>
@@ -56,7 +56,7 @@
             <% end %>
            </div>
            <hr>
-            <%= render partial: 'votes/voter', locals: {category: Category.friendly.find(Bookmark.find(i).category_id) , bookmark: Bookmark.find(i)} %>
+            <%= render partial: 'votes/voter', locals: {category: Bookmark.find(i).category , bookmark: Bookmark.find(i)} %>
           </div>
           <div class="col-md-9">
             
