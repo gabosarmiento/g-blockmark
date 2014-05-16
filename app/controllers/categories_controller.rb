@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.all.paginate(:page => params[:page], :per_page => 30)
     authorize @categories
   end
 
@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @bookmarks = @category.bookmarks
+    @bookmarks = @category.bookmarks.paginate(:page => params[:page], :per_page => 30)
     authorize @category
     if request.path != category_path(@category)
       redirect_to @category, status: :moved_permanently
