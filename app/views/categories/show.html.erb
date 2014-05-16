@@ -10,7 +10,7 @@
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <%= object = LinkThumbnailer.generate(bookmark.url, top: 10, limit: 20, redirect_limit: 5) %>
+            <% object = LinkThumbnailer.generate(bookmark.url, top: 10, limit: 20, redirect_limit: 5) %>
             <%= object.title %>
             <% if object.url? %>
             <%= link_to(image_tag(object.image, size: "100x100"), object.url ) %>
