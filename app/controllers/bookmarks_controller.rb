@@ -1,8 +1,11 @@
 class BookmarksController < ApplicationController
   def index
-    @category = Category.find(params[:category_id])
-    @bookmarks = @category.bookmarks
+    if current_user.present?
+    @bookmarks = current_user.bookmarks
     authorize @bookmarks
+    else
+      redirect_to root_path
+    end
   end
 
   def new

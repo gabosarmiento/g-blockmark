@@ -13,6 +13,11 @@
         <li class="pull-left">
           <%= link_to "Categories", categories_path %>
         </li>
+        <% if current_user %>
+        <li class="pull-left">
+          <%= link_to "My Bookmarks", my_bookmarks_path %>
+        </li>
+        <% end %>
         <div class="pull-right user-info">
            <% if current_user %>
              Hello <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
