@@ -10,9 +10,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
     @bookmarks = @category.bookmarks
     authorize @category
+    if request.path != category_path(@category)
+      redirect_to @category, status: :moved_permanently
+    end
   end
 
   def create
@@ -27,12 +30,12 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
     authorize @category
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
      authorize @category
     if @category.update_attributes(params.require(:category).permit(:name))
       redirect_to @category, notice: "Category was saved successfully."
@@ -43,7 +46,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
     name = @category.name
     authorize @category
     if @category.destroy

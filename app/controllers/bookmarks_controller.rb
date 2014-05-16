@@ -11,19 +11,19 @@ class BookmarksController < ApplicationController
   end
 
   def new
-    @category = Category.find(params[:category_id])
+    @category = Category.friendly.find(params[:category_id])
     @bookmark = Bookmark.new
     authorize @bookmark
   end
 
   def show
-    @category = Category.find(params[:category_id])
+    @category = Category.friendly.find(params[:category_id])
     @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
   end
 
   def create
-   @category = Category.find(params[:category_id])
+   @category = Category.friendly.find(params[:category_id])
    @bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:url))
    @bookmark.category = @category
    authorize @bookmark
@@ -36,13 +36,13 @@ class BookmarksController < ApplicationController
   end
 
   def edit
-   @category = Category.find(params[:category_id])
+   @category = Category.friendly.find(params[:category_id])
    @bookmark = Bookmark.find(params[:id])
    authorize @bookmark
   end
 
   def update
-   @category = Category.find(params[:category_id])
+   @category = Category.friendly.find(params[:category_id])
    @bookmark = Bookmark.find(params[:id])
    authorize @bookmark
     if @bookmark.update_attributes(params.require(:bookmark).permit(:url))
@@ -55,7 +55,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:category_id])
+    @category = Category.friendly.find(params[:category_id])
     @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
     if @bookmark.destroy

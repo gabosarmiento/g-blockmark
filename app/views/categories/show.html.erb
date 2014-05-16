@@ -1,5 +1,9 @@
 <h1><%= @category.name %></h1>
-
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong>Note:</strong>
+  To add links here please send an email to: postmaster@app25135937.mailgun.org with subject: <strong><%= @category.name %></strong> and paste the link inside the email Body.
+</div>
 <% if policy(@category).update? %>
   <%= link_to "Change category name", edit_category_path, class: 'btn btn-success' %>
 <% end %>

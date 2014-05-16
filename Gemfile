@@ -44,4 +44,5 @@ gem 'devise'
 gem 'pundit'
 gem 'figaro'
 gem 'link_thumbnailer'
+gem 'friendly_id'
 
