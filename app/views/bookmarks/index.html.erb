@@ -1,12 +1,19 @@
 
-<div class="col-md-12">
-  <% if current_user.present? %>
-<div class="alert alert-info">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-  <strong>Note:</strong>
-  To automatically create please send an email to: postmaster@app25135937.mailgun.org with subject: the Category name and paste the link inside the email Body.
+<div class="row">
+  <div class="col-md-6">
+    
+  </div>
+  <div class="col-md-6">
+    <% if current_user.present? %>
+      <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Note:</strong>
+        Like and your bookmarks will appear here.  Unlike and they'll be removed.
+      </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
+<div class="col-md-12">
 <div class="row">
   <div class="col-md-7">
     <h1>My Bookmarks</h1>
