@@ -6,6 +6,10 @@
   To automatically create please send an email to: postmaster@app25135937.mailgun.org with subject: the Category name and paste the link inside the email Body.
 </div>
 <% end %>
+<% if policy(Category.new).create? %>
+  <%= link_to "Create a category", new_category_path, class: 'btn btn-success' %>
+<% end %>
+<hr>
 <% @categories.each do |category| %>
  <div class="media">
     <div class="media-body">
@@ -18,7 +22,5 @@
     </div>
   </div>
 <% end %>
+<%= will_paginate @categories %>
 
-<% if policy(Category.new).create? %>
-  <%= link_to "Create a category", new_category_path, class: 'btn btn-success' %>
-<% end %>
